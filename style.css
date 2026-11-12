@@ -971,31 +971,6 @@ blockquote.conclusion-quote cite {
   font-family: var(--font-body);
 }
 
-/* ===== AUTORES Y OBRAS FAMOSAS: recuadro de foto pequeño junto al texto ===== */
-.card.has-portrait {
-  display: grid;
-  grid-template-columns: minmax(0, 38%) 1fr;
-  grid-template-rows: auto auto auto 1fr; /* la fila de foto + texto ocupa el resto y se centra */
-  column-gap: 1.8rem;
-}
-.has-portrait > .kicker,
-.has-portrait > h2,
-.has-portrait > h3 {
-  grid-column: 1 / -1;
-}
-.photo.portrait {
-  aspect-ratio: 3 / 4;
-  margin: 0.3rem 0 2.4rem;
-  align-self: center;
-}
-.has-portrait > .text {
-  align-self: center;
-}
-@media (max-width: 700px) {
-  .card.has-portrait { grid-template-columns: 1fr; }
-  .photo.portrait { width: 60%; margin-inline: auto; }
-}
-
 /* ===== COMENTARIO DE LA FÁBULA: versos con rayas de color ===== */
 .parte { border-left: 0.35rem solid var(--c); padding-left: 1.4rem; margin: 0 0 0.8rem; }
 .parte-1 { --c: #9c3b22; }
@@ -1006,6 +981,11 @@ blockquote.conclusion-quote cite {
 .num { position: absolute; right: 0.2em; top: 0.3em; text-indent: 0; font-size: 0.7em; color: var(--faded); }
 .verses span[style*="text-decoration"] { text-decoration-thickness: 0.1em; text-underline-offset: 0.15em; }
 
-/* ===== AUTORES DE POESÍA: foto horizontal arriba, texto debajo ===== */
+/* ===== AUTORES DE POESÍA: foto arriba y texto debajo, bloque centrado verticalmente ===== */
+.card.foto-arriba {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .card.foto-arriba .photo.foto-autor { aspect-ratio: 21 / 8; margin: 0 0 2.4rem; }
 .foto-autor img { object-position: center 22%; } /* encuadra la cara del retrato */
