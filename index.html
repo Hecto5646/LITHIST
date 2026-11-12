@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LITHIST</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,500&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=IM+Fell+English+SC&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="paper">
+      <!-- ===== CABECERA ===== -->
+      <header class="masthead">
+        <p class="motto">Periódico de Literatura e Historia Castellana</p>
+        <h1>LITHIST</h1>
+        <p class="dateline">
+          <!-- GATITO 1: asoma por encima de la línea. Cambia src si renombras la foto -->
+          <img class="gatito gatito-arriba" src="images/gatito.png" alt="" aria-hidden="true" />
+          <span>Vol. I, N.º 1</span
+          ><span id="fecha">Jueves, 29 de octubre de 2026</span
+          ><span>Edición especial</span>
+        </p>
+      </header>
+
+      <!-- ===== MENÚ DE SECCIONES (6) ===== -->
+      <nav class="sections" aria-label="Secciones del periódico">
+        <!-- data-disponible="si" = se puede abrir · "no" = muestra el sello NO DISPONIBLE -->
+        <button data-disponible="no">El Clasicismo</button>
+        <button data-disponible="no">El Barroco</button>
+        <button data-disponible="si" class="active" aria-current="page">
+          El Neoclasicismo
+        </button>
+        <button data-disponible="no">El Romanticismo</button>
+        <button data-disponible="no">El Realismo</button>
+        <button data-disponible="no">El Impresionismo</button>
+      </nav>
+
+      <!-- ===== ÍNDICE DE ARTÍCULOS ===== -->
+      <nav class="subnav" aria-label="Artículos de Neoclasicismo">
+        <a href="#europa">Contexto histórico</a>
+        <a href="#estetica">Estética y características</a>
+        <a href="#obras">Poesía neoclásica</a>
+        <a href="#relevancia">Fábula neoclásica</a>
+        <a href="#noticias-falsas">Noticias falsas</a>
+        <a href="#fuentes">Bibliografía</a>
+        <a href="#conclusion">Conclusión</a>
+      </nav>
+
+      <!-- ===== SECCIÓN NEOCLASICISMO ===== -->
+      <main class="grid" id="neoclasicismo">
+        <!-- Artículo 1: Contexto histórico en Europa -->
+        <article class="card span-7" id="europa" tabindex="0" data-split>
+          <p class="kicker">Contexto histórico en Europa</p>
+          <h2>La Ilustración</h2>
+          <h3>Cambio de pensamiento</h3>
+          <figure class="photo wide" title="Doble clic para ver la imagen ampliada">
+            <!-- CAMBIAR FOTO: sube tu imagen a images/ y pon su nombre en src -->
+            <img
+              src="images/Ilustración.jpg"
+              alt="Foto contexto Europa"
+              onerror="this.remove()"
+            />
+            <figcaption>
+              Pie de foto: Lectura de una tragedia de Voltaire.
+            </figcaption>
+          </figure>
+            <div class="text cols-2 after-photo" title="Doble clic para ampliar el texto">
+                <p class="dropcap">
+                  La Ilustración fue un movimiento intelectual del s. XVIII, que promovió
+                  la transición del absolutismo a los movimientos políticos y sociales liberales.
+                  Dicho movimiento fue el impulsor de la Revolución Francesa.
+               </p>
+              <div>
+                <p>
+                  Algunos de los pensadores más importantes fueron:
+                </p>
+                  <ul class="plain-list">
+                    <li>· Rousseau (1712-1778)</li>
+                    <li>· Voltaire (1694-1778)</li>
+                  <li>· Montesquieu (1689-1755)</li>
+                  </ul>
+             </div>
+            </div>
+        </article>
+
+        <!-- Artículo 2: Contexto histórico en España -->
+        <article class="card span-5" id="espana" tabindex="0" data-split>
+          <p class="kicker">Contexto histórico en España</p>
+          <h2>Cambio de dinastía</h2>
+          <h3>Nueva historia para España</h3>
+          <figure class="photo" title="Doble clic para ver la imagen ampliada">
+            <img
+              src="images/Dinastia.jpg"
+              alt="Foto contexto España"
+              onerror="this.remove()"
+            />
+            <figcaption>Pie de foto: Los primeros Borbones.</figcaption>
+          </figure>
+          <div class="text after-photo" title="Doble clic para ampliar el texto">
+            <p class="dropcap">
+              Tras la muerte del último rey de la casa de Austria, Carlos II,
+              y debido a la ausencia de descendencia, se inició la Guerra de Sucesión Española.
+              Más de una década después, se firmaron los tratados de Utrecht (1713) y de Rastatt
+              (1714), los cuales pusieron fin a dicha guerra. Felipe V fue el primer rey de la dinastía de los Borbones.
+            </p>
+          </div>
+        </article>
+
+        <!-- Artículo 3: Estética y características -->
+        <article class="card span-12" id="estetica" tabindex="0">
+          <p class="kicker">Estética y características del estilo neoclásico</p>
+          <h2>Arte neoclásico</h2>
+          <h3>Innovación del arte</h3>
+          <div class="text cols-3">
+            <p class="dropcap keep">
+              En la primera mitad del siglo XVIII, durante el Barroco, se
+              difundió el pensamiento de la Ilustración y el gusto por una nueva
+              corriente literaria y artística: El Neoclasicismo «nuevo clasicismo».
+              Se expresó mediante la razón y se basó en la cultura grecorromana que 
+              destacó por ser intelectual y refinada.
+              
+            </p>
+            <div class="text quote-col quote-col-1">
+              <blockquote>
+                La verdad no se revela sino en la luz de la razón — Voltaire
+              </blockquote>
+            </div>
+            <p class="dropcap keep">
+              La literatura neoclásica ofrecía una reflexión sobre las costumbres, 
+              analizaba el papel de la mujer, destacaba la importancia de la educación y
+              solía tener moraleja. El ensayo fue el género más cultivado
+              e hizo énfasis en la intención didáctica, aunque también resurgieron la poesía
+              y las fábulas.
+            </p>
+          </div>
+        </article>
+
+        <!-- Artículo 4: Análisis de obras y autores -->
+        <div class="banner span-12" id="obras">
+          <span>Análisis de obras y autores destacados</span>
+        </div>
+
+        <article class="card span-7" tabindex="0">
+          <p class="kicker">Obras poéticas del estilo neoclásico</p>
+          <h2>Poesía neoclásica</h2>
+          <h3>Innovación de la poesía</h3>
+          <div class="text cols-2 big">
+            <p class="dropcap">
+            La poesía neoclásica se caracterizaba por la fijación de sus formas, el equilibrio, la claridad y la elegancia. 
+            Se popularizó a partir de 1750. Era conocida como poesía anacreóntica y usaba los recursos de la poesía lírica, que pretendía
+            instruir y reformar la sociedad.
+            </p>
+            <p class="center">
+              El autor más famoso fue:
+            </p>
+            <p class="center">
+              Juan Meléndez Valdés
+            </p>
+          </div>
+        </article>
+        <article class="card span-5 photo-card" tabindex="0">
+          <figure class="photo tall">
+            <img src="images/Poesia1.jpg" alt="Obra 1" onerror="this.remove()" />
+            <figcaption><i>Las bodas de Camacho el Rico</i> · Obra 1</figcaption>
+          </figure>
+        </article>
+
+        <!-- Comentario de texto (poesia) -->
+        <article class="card span-5" id="comentario-poesia" tabindex="0">
+          <p class="kicker">Análisis de Texto</p>
+          <h2>Comentario de texto</h2>
+          <h3><i>Las bodas de Camacho el Rico</i> (V. Teatral)<br>
+             Acto I, Escena I, V. 1-19</h3>
+          <div class="text verses">
+            <div class="parte parte-1">
+              <p class="verso"><span style="text-decoration: underline; text-decoration-color: rgb(0, 0, 0);">¡Ay! cómo en estos valles,</span></p>
+              <p class="verso"><span style="border: 2px solid #e68d39; border-radius: 20px; padding: 3px 8px;">Morada</span> <span style="text-decoration: underline; text-decoration-color: rgb(122, 71, 37);">antes</span> de amor, <span style="text-decoration: underline; text-decoration-color: rgb(122, 71, 37);">hoy</span> del <span style="text-decoration: underline; text-decoration-color: #1f4e8c;">olvido</span>,</p>
+              <p class="verso">Basilio fue <span style="text-decoration: underline; text-decoration-color: #1f4e8c;">dichoso</span>!</p>
+              <p class="verso">¡Oh tiempo! ¡Tiempo! ¿Dónde <span style="text-decoration: underline; text-decoration-color: #1f4e8c;">presuroso</span></p>
+              <p class="verso">Tan de presto has <span style="text-decoration: underline; text-decoration-color: #1f4e8c;">huido</span>?<span class="num">5</span></p>
+              <p class="verso">La <span style="text-decoration: underline; text-decoration-color: rgb(122, 71, 37);">crédula</span> esperanza que mi pecho</p>
+              <p class="verso">Abrigó tantos años, ¿qué se ha hecho?</p>
+              <p class="verso">¿Es esta,&#8255;<span style="text-decoration: underline; text-decoration-color: rgb(122, 71, 37);">infiel Quiteria</span>, la ventura <span class="metro">/11/</span></p>
+              <p class="verso">De tu Zagal amado?</p>
+              <p class="verso">Amado sí, cuando inocente y pura<span class="num">10</span></p>
+              <p class="verso">Como la fresca rosa,</p>
+              <p class="verso">Y mucho más hermosa, <span class="metro">/7/</span></p>
+              <p class="verso">Nos dio el amor sus leyes celestiales,</p>
+            </div>
+            <div class="parte parte-2">
+              <p class="verso"><span style="text-decoration: underline; text-decoration-color: rgb(122, 71, 37);"><span style="border: 2px solid rgb(204, 58, 58); border-radius: 20px; padding: 3px 8px;">En fin,</span><span style="border: 2px solid #000000; border-radius: 20px; padding: 3px 8px;">todo lo alcanza la riqueza</span></span>,</p>
+              <p class="verso">y en <span style="text-decoration: underline; text-decoration-color: rgb(122, 71, 37);">adorar el oro</span> son iguales,<span class="num">15</span></p>
+              <p class="verso">ciudades y alquerías.</p>
+              <p class="verso">El mérito es <span style="text-decoration: underline; text-decoration-color: rgb(122, 71, 37);">tener</span>; y la belleza</p>
+              <p class="verso">cede del poderoso a las porfías</p>
+              <p class="verso">cual débil caña al viento.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Autores y obras famosas (poesia) -->
+        <article class="card span-7 foto-arriba" id="autores-poesia" tabindex="0" data-split>
+          <p class="kicker">Autores de poesía neoclásica</p>
+          <h2>Autores y obras famosas</h2>
+          <h3>Juan Meléndez Valdés</h3>
+          <figure class="photo foto-autor" title="Doble clic para ver la imagen ampliada">
+            <img src="images/Autor1.jpg" alt="Retrato del autor" onerror="this.remove()" />
+            <figcaption>Juan Meléndez Valdés</figcaption>
+          </figure>
+          <div class="text cols-2" title="Doble clic para ampliar el texto">
+            <p class="dropcap">
+              Juan Meléndez Valdés (1754-1817). Fue un poeta del Neoclasicismo español. Estudió Derecho en la Universidad de Salamanca, donde se introdujo en el mundo literario.
+              También estuvo vinculado a la Real Academia Española (RAE), donde, en 1780, ganó un concurso de poesía con su obra <i>Batilo</i>. 
+            </p>
+            <p>
+              Dicho autor criticaba las malas costumbres, las injusticias y las desigualdades de la sociedad.
+              A su vez, defendía la educación y la razón, ya que las consideraba fundamentales para mejorar la sociedad.
+              Una de sus obras más famosas fue: <i>Las bodas de Camacho el Rico</i>, basada en <i>Don Quijote de la Mancha</i>.
+          </p>
+          </div>
+        </article>
+
+        <article class="card span-5 photo-card" tabindex="0">
+          <figure class="photo tall">
+            <img src="images/Fabula1.jpg" alt="Obra 2" onerror="this.remove()" />
+            <figcaption><i>La rana y el renacuajo</i> · Fábula 1</figcaption>
+          </figure>
+        </article>
+        <article class="card span-7" tabindex="0">
+          <p class="kicker">Fábulas de animales del estilo neoclásico</p>
+          <h2>Fábulas de animales</h2>
+          <h3>Rima y moraleja</h3>
+          <div class="text cols-2 big">
+            <p class="dropcap">
+              Los protagonistas de las fábulas eran animales que representaban
+              a los seres humanos. De esta manera se conseguía apreciar algunas
+              virtudes y defectos que pasaban desapercibidos.
+            </p>
+            <p>
+              La lengua literaria era sencilla y directa, con rimas que favorecían
+              la memorización y la enseñanza. Esta se dividía en dos partes: la
+              primera parte, narrativa, que exponía la historia y la segunda, reflexiva con la moraleja.
+          </p>
+          </div>
+        </article>
+        
+        <!-- Autores y obras famosas (fabulas) -->
+        <article class="card span-7 has-portrait" id="autores-fabulas" tabindex="0" data-split>
+          <p class="kicker">Autores de fábulas neoclásicas</p>
+          <h2>Autores y obras famosas</h2>
+          <h3>Tomás de Iriarte</h3>
+          <figure class="photo portrait" title="Doble clic para ver la imagen ampliada">
+            <img src="images/Autor2.jpg" alt="Retrato del autor" onerror="this.remove()" />
+            <figcaption>Tomás de Iriarte</figcaption>
+          </figure>
+          <div class="text" title="Doble clic para ampliar el texto">
+            <p class="dropcap">
+              Tomás de Iriarte (1750-1791) nace en una familia ilustrada. Con tan solo catorce años se traslada a Madrid para continuar sus estudios
+              de lenguas clásicas y modernas. Seguidamente, en 1770 comienza a destacar en el ámbito literario.
+            </p>
+            <p>
+              En 1771 su tío Juan fallece, ocupando Tomás el puesto de oficial traductor de la primera Secretaría de Estado, ejercido hasta ese momento por su tío. 
+              En 1780 ve la luz su obra más conocida: <i>Fábulas literarias</i>. Una de las fábulas más
+              famosas de dicha obra fue: <i>La rana y el renacuajo</i>, la cual es un ejemplo de la literatura neoclásica.
+            </p>
+          </div>
+        </article>
+
+        <!-- Comentario de texto (fabulas) -->
+        <article class="card span-5" id="comentario-fabulas" tabindex="0">
+          <p class="kicker">Análisis de Texto</p>
+          <h2>Comentario de texto</h2>
+          <h3><i>La rana y el renacuajo</i></h3>
+          <div class="text verses">
+            <p class="epigrafe"><span style="border: 2px solid #9c3b22; border-radius: 20px; padding: 3px 8px;">¡Qué despreciable es la poesía de mucha hojaresca!</span></p>
+            <div class="parte parte-1">
+              <p class="verso">En la orilla del Tajo</p>
+              <p class="verso"><span style="border: 2px solid #1f4e8c; border-radius: 20px; padding: 3px 8px;"> hablaba con la rana el renacuajo,</span></p>
+              <p class="verso">alabando las hojas, la espesura</p>
+              <p class="verso">de un gran cañaveral y su verdura.</p>
+            </div>
+            <div class="parte parte-2">
+              <p class="verso">Mas luego que del viento<span class="num">5</span></p>
+              <p class="verso">el ímpetu violento</p>
+              <p class="verso">una caña abatió, que cayó al río,</p>
+              <p class="verso">en tono de lección dijo la rana:</p>
+              <p class="verso">«Ven a verla, hijo mío:</p>
+              <p class="verso">por de fuera muy <span style="text-decoration: underline; text-decoration-color: rgb(122, 71, 37);">tersa</span>, muy <span style="text-decoration: underline; text-decoration-color: rgb(122, 71, 37);">lozana</span>;<span class="num">10</span></p>
+              <p class="verso">por dentro, todo <span style="text-decoration: underline; text-decoration-color: rgb(183, 122, 29);">fofa</span>, toda <span style="text-decoration: underline; text-decoration-color: rgb(183, 122, 29);">vana</span>.»</p>
+            </div>
+            <div class="parte parte-3">
+              <p class="verso">Si la rana entendiera poesía,</p>
+              <p class="verso">también de muchos versos lo diría.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Rincón interactivo: Noticias falsas (el juego se genera en script.js) -->
+        <article class="card span-12 nf-card" id="noticias-falsas" data-interactive>
+          <p class="kicker">Rincón interactivo</p>
+          <h2>Noticias falsas del siglo XVIII</h2>
+          <h3>Encuentra las cuatro noticias falsas</h3>
+          <p class="nf-ayuda">
+            Toca los titulares que creas falsos. Entre los ocho hay cuatro falsos: ¡descúbrelos todos!
+          </p>
+          <div class="nf-lista" id="nf-lista"></div>
+          <div class="nf-pie">
+            <p class="nf-marcador" id="nf-marcador" aria-live="polite"></p>
+            <button type="button" class="nf-reiniciar" id="nf-reiniciar">Volver a jugar</button>
+          </div>
+        </article>
+
+        <!-- Artículo 6: Fuentes utilizadas -->
+        <article class="card span-12" id="fuentes" tabindex="0">
+          <p class="kicker">Fuentes utilizadas</p>
+          <h2>Bibliografía</h2>
+          <h3>Fuentes documentales</h3>
+          <ol class="sources cols-2">
+            <li>
+              Concepto (Editorial Etecé).
+              <div class="bibliografia-acciones">
+                <a href="https://concepto.de/neoclasicismo/" target="_blank" rel="noopener noreferrer">
+                  Consultar fuente ↗
+                </a>
+              </div>
+            </li>
+            <li>
+              World History Encyclopedia (UNESCO).
+              <div class="bibliografia-acciones">
+                <a href="https://www.worldhistory.org/trans/es/1-22613/ilustracion/" target="_blank" rel="noopener noreferrer">
+                  Consultar fuente ↗
+                </a>
+              </div>
+            </li>
+            <li>
+              Biblioteca de Humanidades (Editorial Etecé).
+              <div class="bibliografia-acciones">
+                <a href="https://humanidades.com/neoclasicismo/" target="_blank" rel="noopener noreferrer">
+                  Consultar fuente ↗
+                </a>
+              </div>
+            </li>
+            <li>
+              Ministerio de Cultura (Gob. de España).
+              <div class="bibliografia-acciones">
+                <a href="https://www.cultura.gob.es/archivos-aca/actividades/documentos-para-la-historia-de-europa/utrecht" target="_blank" rel="noopener noreferrer">
+                  Consultar fuente ↗
+                </a>
+              </div>
+            </li>
+            <li>
+              Biblioteca Cervantes (BMC, Poesía del siglo XVIII)
+              <div class="bibliografia-acciones">
+                <a href="https://www.cervantesvirtual.com/obra-visor/evolucin-de-la-poesa-en-el-siglo-xviii-0/html/ffcec880-82b1-11df-acc7-002185ce6064_2.html" target="_blank" rel="noopener noreferrer">
+                  Consultar fuente ↗
+                </a>
+              </div>
+            </li>
+            <li>
+              Biblioteca Cervantes (BMC, Juan Meléndez Valdés)
+              <div class="bibliografia-acciones">
+                <a href="https://www.cervantesvirtual.com/obra-visor/la-poesa-comprometida-de-melndez-valds-0/html/0007ed54-82b2-11df-acc7-002185ce6064_3.html" target="_blank" rel="noopener noreferrer">
+                  Consultar fuente ↗
+                </a>
+              </div>
+            </li>
+            <li>
+              Biblioteca Cervantes (BMC, Juan Meléndez Valdés_2)
+              <div class="bibliografia-acciones">
+                <a href="https://www.cervantesvirtual.com/portales/juan_melendez_valdes/autor_biografia/" target="_blank" rel="noopener noreferrer">
+                  Consultar fuente ↗
+                </a>
+              </div>
+            </li>
+            <li>
+              Biblioteca Cervantes (BMC, «<i>Las bodas de Camacho el Rico</i>»)
+              <div class="bibliografia-acciones">
+                <a href="https://www.cervantesvirtual.com/obra-visor/cervantes-en-melendez-valdes-las-bodas-de-camacho-el-rico/html/ecbd45ce-a0f9-11e1-b1fb-00163ebf5e63_3.html" target="_blank" rel="noopener noreferrer">
+                  Consultar fuente ↗
+                </a>
+              </div>
+            </li>
+            <li>
+              Biblioteca Cervantes (BMC, «<i>Las bodas de Camacho el Rico</i>»_2)
+              <div class="bibliografia-acciones">
+                <a href="https://www.cervantesvirtual.com/obra-visor/teatro--1/html/00026744-82b2-11df-acc7-002185ce6064_2.html" target="_blank" rel="noopener noreferrer">
+                  Consultar fuente ↗
+                </a>
+              </div>
+            </li>
+            <li>
+              Biblioteca Cervantes (BMC, Tomás de Iriarte).
+              <div class="bibliografia-acciones">
+                <a href="https://www.cervantesvirtual.com/portales/tomas_de_iriarte/presentacion/" target="_blank" rel="noopener noreferrer">
+                  Consultar fuente ↗
+                </a>
+              </div>
+            </li>
+            <li>
+              Biblioteca Cervantes (BMC, <i>Fábulas literarias</i>).
+              <div class="bibliografia-acciones">
+                <a href="https://www.cervantesvirtual.com/obra-visor/fabulas-literarias-0/html/ffcec880-82b1-11df-acc7-002185ce6064_2.html" target="_blank" rel="noopener noreferrer">
+                  Consultar fuente ↗
+                </a>
+              </div>
+            </li>
+                        <li>
+              Libro de Lengua y Literatura Castellana de 4ºESO
+            </li>
+          </ol>
+        </article>
+
+        <!-- Artículo 7: Conclusión y valoración personal -->
+        <article class="card span-12" id="conclusion" tabindex="0">
+          <p class="kicker">Conclusión y valoración personal</p>
+          <h2>Conclusión</h2>
+          <h3>Valoración del equipo</h3>
+          <div class="text conclusion-body">
+            <p class="dropcap">
+              En conclusión, el Neoclasicismo fue una época orientada a la razón
+              y al saber, donde la poesía y las fábulas tomaron un papel muy
+              importante en el ámbito literario. Hemos adquirido nuevos conocimientos sobre las corrientes literarias de esta época, además nos ha parecido muy interesante.
+            </p>
+            <blockquote class="conclusion-quote">
+              El mundo de la realidad tiene sus límites; el mundo de la imaginación es infinito.
+              <cite>— Jean-Jacques Rousseau</cite>
+            </blockquote>
+          </div>
+        </article>
+        <!--
+      ¿AÑADIR UN ARTÍCULO NUEVO? Copia un bloque <article class="card span-6"> ... </article>
+      Las clases span-3, span-4, span-5, span-6, span-7, span-8 y span-12 definen su ancho (la fila tiene 12).
+    -->
+      </main>
+
+      <!-- ===== PIE: EQUIPO ===== -->
+      <footer class="footer">
+        <p class="kicker">Redacción · Equipo de LITHIST</p>
+        <ul>
+          <li>HÉCTOR CUBEL</li>
+          <li>LUCIA MORENO</li>
+          <li>SOFÍA MOCHOLÍ</li>
+          <li>LOLA GÁLVEZ</li>
+        </ul>
+        <p class="small">
+          LITHIST · Periódico de Literatura e Historia Castellana · 4.º ESO B Lengua y Literatura
+          Castellana
+        </p>
+        <!-- GATITO 2: asoma por el borde inferior de la página -->
+        <div class="gatito-abajo" aria-hidden="true">
+          <img src="images/gatito.png" alt="" />
+        </div>
+      </footer>
+    </div>
+
+    <!-- Sello "NO DISPONIBLE" -->
+    <div class="stamp" id="stamp" aria-live="polite">No disponible</div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

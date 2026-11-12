@@ -1,0 +1,1011 @@
+/* style.css · LITHIST — periódico antiguo
+   Colores y tamaños se cambian en :root */
+:root {
+  --paper: #e8d9b8;
+  --paper-dark: #cdb98e;
+  --ink: #241c13;
+  --faded: #6a573f;
+  --rule: #3a2e20;
+  --font-title: "Playfair Display", "Times New Roman", serif;
+  --font-body: "Old Standard TT", Georgia, serif;
+  --font-label: "IM Fell English SC", Georgia, serif;
+  /* Escala con la pantalla: ~27px en 1920, ~33px en 2560, ~45px en 4K */
+  --body-size: clamp(15px, 0.95vw + 9px, 48px);
+  --pad: clamp(14px, 2.5vw, 64px);
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  background: var(--paper);
+  /* todo lo que está en rem (menú, cabecera...) ahora escala igual que el texto */
+  font-size: var(--body-size);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+  background: var(--paper);
+  overflow-x: hidden;
+}
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* Papel envejecido: manchas + grano */
+.paper {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: var(--pad);
+  background: radial-gradient(
+      ellipse at 8% 4%,
+      rgba(120, 80, 30, 0.35),
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse at 96% 30%,
+      rgba(120, 80, 30, 0.25),
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 40% 100%,
+      rgba(100, 60, 20, 0.35),
+      transparent 45%
+    ),
+    var(--paper);
+  box-shadow: inset 0 0 120px rgba(90, 55, 15, 0.55);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.paper::after {
+  /* grano que parpadea muy suave, como papel viejo */
+  content: "";
+  position: fixed;
+  inset: -16px; /* más grande que la pantalla: evita la franja blanca al moverse */
+  pointer-events: none;
+  z-index: 50;
+  will-change: transform;
+  mix-blend-mode: multiply;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .1  0 0 0 .8 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 1.2s steps(2) infinite;
+}
+@keyframes grain {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-6px, 4px);
+  }
+  100% {
+    transform: translate(3px, -5px);
+  }
+}
+
+/* Cabecera */
+.masthead {
+  text-align: center;
+  border-bottom: 4px double var(--rule);
+  padding-bottom: 0.6rem;
+}
+.masthead h1 {
+  font-family: var(--font-title);
+  font-weight: 900;
+  margin: 0.1em 0 0;
+  font-size: clamp(56px, 13vw, 190px);
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+}
+@keyframes inkIn {
+  0% {
+    opacity: 0;
+    letter-spacing: 0.3em;
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    letter-spacing: 0.04em;
+    filter: blur(0);
+  }
+}
+.motto {
+  font-family: var(--font-label);
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--faded);
+}
+.dateline {
+  position: relative; /* para colocar el gatito sobre esta línea */
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-family: var(--font-label);
+  font-size: 0.9rem;
+  margin: 0.5rem 0 0;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.35rem;
+}
+
+/* Menú de secciones */
+.sections {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-bottom: 1px solid var(--rule);
+}
+.sections button {
+  font-family: var(--font-label);
+  font-size: 1.05rem;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  padding: 0.6rem 1.1rem;
+  min-height: 2.6em; /* objetivo táctil cómodo */
+  cursor: pointer;
+  position: relative;
+  touch-action: manipulation;
+}
+.sections button + button {
+  border-left: 1px solid var(--faded);
+}
+.sections button:hover {
+  background: rgba(60, 40, 15, 0.12);
+}
+.sections button.active {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.subnav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem 1.4rem;
+  padding: 0.5rem 0;
+  font-style: italic;
+}
+.subnav a {
+  color: var(--faded);
+  text-decoration: none;
+  padding: 0.35em 0.2em; /* más fácil de pulsar con el dedo */
+}
+.subnav a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+.hint {
+  text-align: center;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--faded);
+  margin: 0 0 1rem;
+}
+
+/* Rejilla de artículos (12 columnas) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.2rem;
+}
+.span-3 {
+  grid-column: span 3;
+}
+.span-4 {
+  grid-column: span 4;
+}
+.span-5 {
+  grid-column: span 5;
+}
+.span-6 {
+  grid-column: span 6;
+}
+.span-7 {
+  grid-column: span 7;
+}
+.span-8 {
+  grid-column: span 8;
+}
+.span-12 {
+  grid-column: span 12;
+}
+
+.card {
+  border: 1px solid var(--rule);
+  outline: 1px solid var(--rule);
+  outline-offset: -6px;
+  padding: 1.4rem 1.6rem;
+  background: rgba(255, 245, 215, 0.18);
+  cursor: zoom-in;
+  transition: background 0.25s, transform 0.25s;
+  /* pantalla táctil: sin selección de texto ni zoom del navegador al hacer doble toque */
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+.card:focus-visible {
+  background: rgba(255, 245, 215, 0.4);
+}
+@media (hover: hover) {
+  .card:hover {
+    background: rgba(255, 245, 215, 0.4);
+    transform: rotate(-0.15deg);
+  }
+}
+.card:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+.kicker {
+  font-family: var(--font-label);
+  color: var(--faded);
+  margin: 0 0 0.2rem;
+  font-size: 0.95em;
+}
+.card h2 {
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: 2.3em;
+  line-height: 1.05;
+  margin: 0;
+}
+.card h3 {
+  font-family: var(--font-title);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.15em;
+  margin: 0.2rem 0 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.text p {
+  margin: 0 0 0.7em;
+  text-align: justify;
+  hyphens: auto;
+}
+.cols-2 {
+  column-count: 2;
+  column-gap: 1.6rem;
+  column-rule: 1px solid var(--faded);
+}
+.cols-3 {
+  column-count: 3;
+  column-gap: 1.6rem;
+  column-rule: 1px solid var(--faded);
+}
+.text.keep,
+.keep {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+}
+.center {
+  text-align: center;
+}
+
+.plain-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.2em 0 0;
+}
+.after-photo {
+  margin-top: 1.4rem;
+}
+/* Columna de la cita: centrada con respecto a las otras columnas */
+.quote-col {
+  padding-bottom: 0.4rem;
+}
+.quote-col-1 {
+  padding-top: 3.2rem;
+}
+.quote-col-2 {
+  padding-top: 1.6rem;
+}
+.text.big {
+  font-size: 1.12em;
+}
+.dropcap::first-letter {
+  font-family: var(--font-title);
+  font-weight: 900;
+  float: left;
+  font-size: 3em;
+  line-height: 0.8;
+  padding: 0.08em 0.1em 0 0;
+}
+blockquote {
+  break-inside: avoid;
+  margin: 0 0 0.8em;
+  padding: 0.6rem 0.2rem;
+  text-align: center;
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: 1.25em;
+  border-top: 2px solid var(--rule);
+  border-bottom: 2px solid var(--rule);
+}
+.sources {
+  padding-left: 1.3rem;
+  margin: 0;
+}
+.sources li {
+  margin-bottom: 0.5em;
+}
+.sources.cols-2 {
+  column-gap: 6rem;
+  text-align: left;
+}
+.sources.cols-2 li {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  padding-right: 1rem;
+}
+.sources.cols-2 .bibliografia-acciones a {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* ===== BOTONES DE BIBLIOGRAFÍA ===== */
+
+.bibliografia-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.bibliografia-acciones a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 6px 12px;
+
+  font-family: var(--font-label);
+  font-size: 0.76em;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+
+  color: var(--ink);
+  text-decoration: none;
+
+  border: 1px solid var(--faded);
+  background: rgba(205, 185, 142, 0.22);
+
+  transition: all 0.25s ease;
+}
+
+/* Efecto al pasar el ratón */
+
+.bibliografia-acciones a:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 2px 3px 0 rgba(36, 28, 19, 0.2);
+}
+
+/* Al pulsar */
+
+.bibliografia-acciones a:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Accesibilidad con teclado */
+
+.bibliografia-acciones a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* Fotos: si no hay imagen, se ve un recuadro en blanco con "FOTO" */
+.photo {
+  margin: 0 0 2.3rem; /* deja sitio al pie de foto */
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border: 2px solid var(--rule);
+  background: repeating-linear-gradient(
+      45deg,
+      rgba(60, 40, 15, 0.08) 0 8px,
+      transparent 8px 16px
+    ),
+    rgba(255, 245, 215, 0.25);
+  display: grid;
+  place-items: center;
+}
+.photo.wide {
+  aspect-ratio: 21 / 9;
+}
+.photo.tall {
+  aspect-ratio: 4 / 5;
+}
+/* Tarjetas que solo contienen una foto: la foto ocupa todo el alto disponible */
+.photo-card {
+  display: flex;
+  flex-direction: column;
+}
+.photo-card .photo {
+  flex: 1;
+  aspect-ratio: auto;
+  min-height: 16rem;
+  margin-bottom: 0.6rem; /* sitio para el pie de foto */
+}
+.photo::after {
+  content: "FOTO";
+  font-family: var(--font-label);
+  font-size: 1.6em;
+  color: var(--faded);
+  letter-spacing: 0.3em;
+}
+.photo:has(img)::after {
+  content: none;
+}
+.photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.9) sepia(0.55) contrast(1.05);
+  transition: filter 0.4s;
+}
+.card:hover .photo img {
+  filter: grayscale(0.4) sepia(0.45);
+}
+.photo figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1.9em;
+  font-size: 0.8em;
+  font-style: italic;
+  color: var(--faded);
+  text-align: center;
+}
+
+/* Separador de apartado */
+.banner {
+  text-align: center;
+  border-top: 4px double var(--rule);
+  border-bottom: 4px double var(--rule);
+  padding: 0.5rem;
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: 1.8em;
+}
+
+/* Pie */
+.footer {
+  position: relative;
+  margin-top: 1.5rem;
+  padding-bottom: 0.4rem;
+  border-top: 4px double var(--rule);
+  text-align: center;
+  padding-top: 0.8rem;
+}
+.footer ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0.4rem 0;
+  padding: 0;
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1.3em;
+}
+.footer li {
+  padding: 0 1.4rem;
+}
+.footer li + li {
+  border-left: 1px solid var(--rule);
+}
+.small {
+  font-size: 0.8em;
+  color: var(--faded);
+  font-style: italic;
+}
+
+/* Sello NO DISPONIBLE */
+.stamp {
+  position: fixed;
+  top: 38%;
+  left: 50%;
+  z-index: 120;
+  pointer-events: none;
+  opacity: 0;
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: clamp(30px, 7vw, 90px);
+  text-transform: uppercase;
+  color: #8a1f14;
+  border: 0.12em solid #8a1f14;
+  padding: 0.1em 0.35em;
+  border-radius: 6px;
+  mix-blend-mode: multiply;
+  transform: translate(-50%, -50%) rotate(-9deg);
+}
+.stamp.show {
+  animation: stamp 1.8s ease-out both;
+}
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-9deg) scale(2.6);
+  }
+  15% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) rotate(-9deg) scale(1);
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ===== MODAL (vista ampliada) ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  place-items: center;
+  padding: clamp(10px, 2.5vw, 48px);
+  background: rgba(20, 12, 4, 0.86);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+.modal.open {
+  display: grid;
+}
+.modal__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(96vw, 1600px);
+  max-height: 92vh;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  outline: 1px solid var(--rule);
+  outline-offset: -8px;
+  box-shadow: 0 0 0 6px var(--paper-dark), 0 24px 90px #000;
+  animation: zoomIn 0.3s ease-out;
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.modal__content {
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: clamp(3rem, 5vw, 5rem) clamp(1.4rem, 5vw, 5.5rem) clamp(1.6rem, 4vw, 4rem);
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Botón de cierre minimalista */
+.modal__close {
+  position: absolute;
+  top: clamp(10px, 1.4vw, 24px);
+  right: clamp(10px, 1.4vw, 24px);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: clamp(40px, 3vw, 64px);
+  height: clamp(40px, 3vw, 64px);
+  padding: 0;
+  border: 1px solid var(--faded);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+    transform 0.25s ease;
+}
+.modal__close svg {
+  width: 42%;
+  height: 42%;
+  display: block;
+}
+.modal__close path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.modal__close:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+@media (hover: hover) {
+  .modal__close:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+    transform: rotate(90deg);
+  }
+}
+.modal__close:active {
+  transform: scale(0.94);
+}
+
+/* Modo texto: la tarjeta (o solo su texto) en grande */
+.modal .card.modal-card {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  cursor: default;
+  transform: none;
+  font-size: 1.3rem;
+  -webkit-user-select: text;
+  user-select: text;
+}
+.modal .card.modal-card:hover {
+  background: none;
+  transform: none;
+}
+.modal .card.modal-card h2 {
+  font-size: 2.6em;
+}
+.modal .after-photo {
+  margin-top: 0;
+}
+
+/* Modo imagen */
+.modal-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+.modal-figure img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(92vh - 14rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 2px solid var(--rule);
+  box-shadow: 0 10px 34px rgba(36, 28, 19, 0.35);
+}
+.modal-figure figcaption {
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--faded);
+}
+.modal-figure__link {
+  font-family: var(--font-label);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--faded);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.modal-figure__link:hover,
+.modal-figure__link:focus-visible {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+/* Adaptable */
+@media (max-width: 900px) {
+  .grid > * {
+    grid-column: span 12;
+  }
+  .cols-3 {
+    column-count: 2;
+  }
+}
+@media (max-width: 560px) {
+  .cols-2,
+  .cols-3,
+  .sources.cols-2 {
+    column-count: 1;
+  }
+  .dateline {
+    justify-content: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== GATITOS (asoman por las líneas del periódico) ===== */
+.gatito,
+.gatito-abajo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  /* mezcla con el papel: el blanco desaparece y los trazos se ven como tinta */
+  mix-blend-mode: multiply;
+  filter: sepia(0.55) contrast(1.05);
+}
+/* 1) Encima de la línea de "Vol. I, N.º 1": se apoya en la línea */
+.gatito-arriba {
+  position: absolute;
+  left: clamp(4px, 1.5vw, 40px);
+  bottom: 100%;
+  width: clamp(72px, 8.5vw, 240px);
+  margin-bottom: -1px; /* se "mete" un pelín tras la línea */
+}
+/* 2) Pie de página: el gatito se ve ENTERO, en el flujo del pie, apoyado en el borde inferior de la página */
+.footer {
+  padding-bottom: 0;
+}
+.gatito-abajo {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.6rem clamp(8px, 3vw, 90px) calc(-1 * var(--pad)) 0;
+  pointer-events: none;
+}
+.gatito-abajo img {
+  width: clamp(72px, 8.5vw, 240px);
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===== TARJETAS "PARTIDAS" (Ilustración y Cambio de dinastía) =====
+   El doble clic actúa solo sobre la foto o sobre el texto, no sobre toda la tarjeta */
+.card[data-split] {
+  cursor: default;
+}
+.card[data-split] .photo,
+.card[data-split] .text,
+.card[data-split] .kicker,
+.card[data-split] h2,
+.card[data-split] h3 {
+  cursor: zoom-in;
+}
+.card[data-split] .photo:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+/* ===== CONCLUSIÓN ===== */
+.conclusion-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-top: 0.4rem;
+}
+.conclusion-body > p {
+  margin: 0;
+  padding-right: 2.4rem;
+}
+blockquote.conclusion-quote {
+  margin: 0;
+  padding: 0.6rem 0 0.6rem 2.4rem;
+  border: 0;
+  border-left: 1px solid var(--faded);
+  font-size: 1.35em;
+  line-height: 1.4;
+}
+blockquote.conclusion-quote cite {
+  display: block;
+  margin-top: 0.7em;
+  font-family: var(--font-label);
+  font-size: 0.7em;
+  font-style: normal;
+  color: var(--faded);
+}
+@media (max-width: 900px) {
+  .photo-card .photo {
+    flex: none;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+}
+@media (max-width: 700px) {
+  .conclusion-body {
+    grid-template-columns: 1fr;
+    row-gap: 1.2rem;
+  }
+  .conclusion-body > p {
+    padding-right: 0;
+  }
+  blockquote.conclusion-quote {
+    padding: 0.8rem 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--faded);
+  }
+}
+
+/* ===== RINCÓN INTERACTIVO: NOTICIAS FALSAS ===== */
+.card.nf-card {
+  cursor: default;
+}
+.nf-ayuda {
+  margin: 0 0 1.1rem;
+  font-style: italic;
+  color: var(--faded);
+}
+.nf-lista {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 1.6rem;
+}
+.nf-item {
+  font: inherit;
+  text-align: left;
+  color: var(--ink);
+  background: rgba(255, 245, 215, 0.25);
+  border: 1px solid var(--rule);
+  padding: 1rem 1.2rem;
+  min-height: 4rem;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background 0.2s;
+}
+@media (hover: hover) {
+  .nf-item:not([data-hecho]):hover {
+    background: rgba(255, 245, 215, 0.6);
+  }
+}
+.nf-item:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+.nf-titular {
+  display: block;
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1.1em;
+  line-height: 1.3;
+}
+.nf-sello {
+  display: inline-block;
+  margin-top: 0.7rem;
+  padding: 0.05em 0.55em;
+  font-family: var(--font-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 0.12em solid currentColor;
+  transform: rotate(-3deg);
+  animation: nfSello 0.35s ease-out both;
+}
+@keyframes nfSello {
+  from {
+    opacity: 0;
+    transform: rotate(-3deg) scale(1.8);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-3deg) scale(1);
+  }
+}
+.nf-expl {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9em;
+  font-style: italic;
+  color: var(--faded);
+}
+.nf-item.es-falsa {
+  border-color: #8a1f14;
+  background: rgba(138, 31, 20, 0.09);
+}
+.nf-item.es-falsa .nf-sello {
+  color: #8a1f14;
+}
+.nf-item.es-cierta .nf-sello {
+  color: var(--faded);
+}
+.nf-pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--rule);
+}
+.nf-marcador {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: 1.1em;
+}
+.nf-reiniciar {
+  font-family: var(--font-label);
+  font-size: 1em;
+  color: var(--ink);
+  background: rgba(205, 185, 142, 0.22);
+  border: 1px solid var(--faded);
+  padding: 0.5rem 1.2rem;
+  min-height: 2.6em;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background 0.25s, color 0.25s;
+}
+.nf-reiniciar:hover,
+.nf-reiniciar:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+}
+@media (max-width: 900px) {
+  .nf-lista {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== NOTICIAS FALSAS: misma fuente que los párrafos normales ===== */
+.nf-card .kicker,
+.nf-card h2,
+.nf-card h3,
+.nf-titular,
+.nf-sello,
+.nf-marcador,
+.nf-reiniciar {
+  font-family: var(--font-body);
+}
+
+/* ===== AUTORES Y OBRAS FAMOSAS: recuadro de foto pequeño junto al texto ===== */
+.card.has-portrait {
+  display: grid;
+  grid-template-columns: minmax(0, 38%) 1fr;
+  grid-template-rows: auto auto auto 1fr; /* la fila de foto + texto ocupa el resto y se centra */
+  column-gap: 1.8rem;
+}
+.has-portrait > .kicker,
+.has-portrait > h2,
+.has-portrait > h3 {
+  grid-column: 1 / -1;
+}
+.photo.portrait {
+  aspect-ratio: 3 / 4;
+  margin: 0.3rem 0 2.4rem;
+  align-self: center;
+}
+.has-portrait > .text {
+  align-self: center;
+}
+@media (max-width: 700px) {
+  .card.has-portrait { grid-template-columns: 1fr; }
+  .photo.portrait { width: 60%; margin-inline: auto; }
+}
+
+/* ===== COMENTARIO DE LA FÁBULA: versos con rayas de color ===== */
+.parte { border-left: 0.35rem solid var(--c); padding-left: 1.4rem; margin: 0 0 0.8rem; }
+.parte-1 { --c: #9c3b22; }
+.parte-2 { --c: #1f5f63; }
+.parte-3 { --c: #6b4f12; }
+.text p.verso { position: relative; margin: 0; padding: 0.12em 2.6em 0.12em 1.5em; text-indent: -1.5em; text-align: left; hyphens: none; line-height: 1.6; }
+.text p.epigrafe { text-align: left; margin: 0 0 0.9rem; }
+.num { position: absolute; right: 0.2em; top: 0.3em; text-indent: 0; font-size: 0.7em; color: var(--faded); }
+.verses span[style*="text-decoration"] { text-decoration-thickness: 0.1em; text-underline-offset: 0.15em; }
+
+/* ===== AUTORES DE POESÍA: foto horizontal arriba, texto debajo ===== */
+.card.foto-arriba .photo.foto-autor { aspect-ratio: 21 / 8; margin: 0 0 2.4rem; }
+.foto-autor img { object-position: center 22%; } /* encuadra la cara del retrato */
