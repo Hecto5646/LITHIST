@@ -998,7 +998,7 @@ blockquote.conclusion-quote cite {
 /* ===== RETRATO DE TOMÁS DE IRIARTE: formato pequeño tipo carnet a la izquierda ===== */
 .card.has-portrait .photo.portrait {
   float: left;
-  width: clamp(210px, 24vw, 260px);
+  width: clamp(300px, 32vw, 360px);
   aspect-ratio: 3 / 4;
   margin: 0.2rem 1.25rem 1rem 0;
   clear: none;
@@ -1012,7 +1012,7 @@ blockquote.conclusion-quote cite {
 }
 @media (max-width: 560px) {
   .card.has-portrait .photo.portrait {
-    width: 180px;
+    width: 240px;
     margin-left: 0.9rem;
   }
 }
