@@ -993,3 +993,26 @@ blockquote.conclusion-quote cite {
 .card.foto-arriba .photo.foto-autor { aspect-ratio: 21 / 8; margin: 0 0 2.4rem; }
 .card.foto-arriba > .text p:last-child { margin-bottom: 0; }
 .foto-autor img { object-position: center 22%; } /* encuadra la cara del retrato */
+
+
+/* ===== RETRATO DE TOMÁS DE IRIARTE: formato pequeño tipo carnet ===== */
+.card.has-portrait .photo.portrait {
+  float: right;
+  width: clamp(105px, 14vw, 145px);
+  aspect-ratio: 3 / 4;
+  margin: 0.2rem 0 1rem 1.25rem;
+  clear: none;
+}
+.card.has-portrait .photo.portrait img {
+  object-fit: cover;
+  object-position: center 20%;
+}
+.card.has-portrait .text {
+  display: block;
+}
+@media (max-width: 560px) {
+  .card.has-portrait .photo.portrait {
+    width: 105px;
+    margin-left: 0.9rem;
+  }
+}
